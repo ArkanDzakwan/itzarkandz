@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Arkan Dzakwan - Rock Metal Edition</title>
+    <!-- Google Fonts untuk tema minimalis designer -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset dan font utama */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Montserrat', sans-serif; /* Font minimalis untuk body */
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a, #2a2a2a); /* Gradien gelap metal */
+            color: #fff; 
+            line-height: 1.6; 
+            padding: 20px; 
+            overflow-x: hidden; /* Hindari scroll horizontal */
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.imgur.com/metal-texture.jpg') no-repeat center center fixed; /* Placeholder texture metal */
+            background-size: cover;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        h1, h2, h3 { 
+            font-family: 'Poppins', sans-serif; /* Font minimalis untuk judul */
+            color: #dc143c; /* Merah (crimson) */
+            text-shadow: 0 0 10px #dc143c, 0 0 20px #dc143c; /* Glow effect */
+            text-transform: uppercase;
+        }
+        h1 { 
+            font-size: 3em; 
+            text-align: center; 
+            margin-bottom: 10px; 
+            animation: pulse 2s infinite; 
+        }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        
+        /* Tabs dengan efek metal */
+        .tabs { 
+            display: flex; 
+            justify-content: center; 
+            margin-bottom: 30px; 
+            flex-wrap: wrap; 
+            position: relative;
+        }
+        .tab { 
+            padding: 15px 25px; 
+            cursor: pointer; 
+            background: linear-gradient(45deg, #333, #555); 
+            border: 2px solid #dc143c; 
+            margin: 0 10px; 
+            transition: all 0.4s ease; 
+            border-radius: 10px; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            box-shadow: 0 4px 8px rgba(220, 20, 60, 0.3); 
+            position: relative;
+            overflow: hidden;
+        }
+        .tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 20, 60, 0.5), transparent);
+            transition: left 0.5s;
+        }
+        .tab:hover::before { left: 100%; }
+        .tab:hover { 
+            background: linear-gradient(45deg, #555, #777); 
+            transform: scale(1.1) rotate(1deg); 
+            box-shadow: 0 6px 12px rgba(220, 20, 60, 0.5); 
+        }
+        .tab.active { 
+            background: linear-gradient(45deg, #dc143c, #ff6347); 
+            color: #000; 
+            box-shadow: 0 0 15px #dc143c; 
+        }
+        
+        /* Konten dengan efek fade dan metal */
+        .content { 
+            display: none; 
+            padding: 30px; 
+            background: rgba(0,0,0,0.8); 
+            border-radius: 15px; 
+            margin-bottom: 20px; 
+            border: 2px solid #dc143c; 
+            box-shadow: 0 0 20px rgba(220, 20, 60, 0.3); 
+            backdrop-filter: blur(10px); /* Efek blur untuk kesan metal */
+        }
+        .content.active { 
+            display: block; 
+            animation: fadeIn 0.8s ease, slideUp 0.8s ease; 
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(50px); } to { transform: translateY(0); } }
+        
+        /* Profile dengan efek hover keren */
+        .profile { 
+            display: flex; 
+            align-items: center; 
+            flex-wrap: wrap; 
+            position: relative;
+        }
+        .profile img { 
+            width: 180px; 
+            height: 180px; 
+            margin-right: 30px; 
+            border-radius: 50%; 
+            border: 4px solid #dc143c; 
+            transition: all 0.5s ease; 
+            box-shadow: 0 0 20px #dc143c; 
+            filter: grayscale(20%); /* Efek metal */
+        }
+        .profile img:hover { 
+            transform: rotate(10deg) scale(1.1); 
+            filter: grayscale(0%) brightness(1.2); 
+            box-shadow: 0 0 30px #dc143c; 
+        }
+        .profile div p { 
+            margin: 10px 0; 
+            font-size: 1.1em; 
+            text-shadow: 1px 1px 2px #000; 
+        }
+        .profile div p::before { 
+            content: '🔥 '; /* Icon rock */
+            font-size: 1.2em; 
+        }
+        
+        /* Portfolio dengan grid metal */
+        .portfolio-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 25px; 
+        }
+        .portfolio-item { 
+            background: linear-gradient(45deg, #222, #444); 
+            padding: 15px; 
+            border-radius: 10px; 
+            text-align: center; 
+            border: 2px solid #dc143c; 
+            transition: all 0.4s ease; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5); 
+            position: relative;
+            overflow: hidden;
+        }
+        .portfolio-item:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 8px 16px rgba(220, 20, 60, 0.5); 
+        }
+        .portfolio-item img { 
+            width: 100%; 
+            height: 300px; 
+            object-fit: cover; 
+            border-radius: 8px; 
+            transition: transform 0.4s; 
+        }
+        .portfolio-item:hover img { transform: scale(1.05); }
+        .portfolio-item p { 
+            margin-top: 10px; 
+            font-size: 0.9em; 
+            color: #ccc; 
+        }
+        
+        /* Social links dengan efek metal */
+        .social-links { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 20px; 
+            justify-content: center;
+        }
+        .social-links a { 
+            color: #fff; 
+            text-decoration: none; 
+            padding: 15px 20px; 
+            background: linear-gradient(45deg, #333, #555); 
+            border-radius: 10px; 
+            border: 2px solid #dc143c; 
+            transition: all 0.4s ease; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            box-shadow: 0 4px 8px rgba(220, 20, 60, 0.3); 
+            position: relative;
+        }
+        .social-links a:hover { 
+            background: linear-gradient(45deg, #dc143c, #ff6347); 
+            transform: scale(1.1); 
+            box-shadow: 0 6px 12px rgba(220, 20, 60, 0.6); 
+        }
+        
+        /* Footer dengan efek metal */
+        footer { 
+            text-align: center; 
+            margin-top: 50px; 
+            padding: 25px; 
+            background: rgba(0,0,0,0.9); 
+            border-radius: 15px; 
+            border: 2px solid #dc143c; 
+            box-shadow: 0 0 20px rgba(220, 20, 60, 0.3); 
+        }
+        footer p { 
+            font-size: 0.9em; 
+            color: #ccc; 
+        }
+        footer a { 
+            color: #dc143c; 
+            text-decoration: none; 
+            transition: color 0.3s; 
+        }
+        footer a:hover { 
+            color: #fff; 
+            text-shadow: 0 0 10px #dc143c; 
+        }
+        
+        /* Responsif dengan peningkatan */
+        @media (max-width: 768px) {
+            .profile { flex-direction: column; text-align: center; }
+            .tabs { flex-direction: column; align-items: center; }
+            .tab { width: 90%; margin: 10px 0; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .social-links { flex-direction: column; align-items: center; }
+            h1 { font-size: 2em; }
+        }
+        
+        /* Efek scroll untuk kesan dinamis */
+        @media (prefers-reduced-motion: no-preference) {
+            html { scroll-behavior: smooth; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Arkan Dzakwan</h1>
+    <p style="text-align: center; margin-bottom: 20px; font-size: 1.2em; text-shadow: 1px 1px 3px #000;">Welcome to my world!</p>
+    
+    <!-- Tabs -->
+    <div class="tabs">
+        <div class="tab active" onclick="showTab('profile')">Profile</div>
+        <div class="tab" onclick="showTab('portfolio')">Portfolio</div>
+        <div class="tab" onclick="showTab('social')">Social</div>
+    </div>
+    
+    <!-- Konten Profile -->
+    <div id="profile" class="content active">
+        <h2>About Me</h2>
+        <div class="profile">
+            <img src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/65b685843aa66348d6c1cf811d157d7f~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=14579&refresh_token=01ce6b55&x-expires=1768730400&x-signature=fAZgHR%2BX9hkO6wkz2nFhUZ3OjNc%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my2" alt="Foto Profil Arkan Dzakwan - Rock Metal Enthusiast">
+            <div>
+                <h3>Name: Arkan Dzakwan</h3>
+                <p>🎂 Born: 2 February, 17 Years Old</p>
+                <p>📚 Economics and Informatics Nerd – Enthusiast to be an outstanding student.</p>
+                <p>🎸 Rock and Metal Enthusiast – Radiohead, Green Day, AC/DC, Slipknot and Nirvana Fans.</p>
+                <p>🎨 Artistic Furry Artist! – Hoping on ITB - FAKULTAS SENI RUPA DAN DESAIN / C - S1.</p>
+                <p>💻 Graphic Designer, Editor, dan Photographer – Open Commision for Design and Editing.</p>
+                <p>🧠 Personality: INTJ-A – Creative and Artistic Introvert.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Konten Portfolio -->
+    <div id="portfolio" class="content">
+        <h2>My Portfolio</h2>
+        <p>Berikut beberapa karya dan proyekku. Klik gambar untuk lihat lebih besar (placeholder).</p>
+        
+        <h3>📸 Photography</h3>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://pbs.twimg.com/media/G-hcd_1XcAA57K_?format=jpg&name=small" alt="Foto Landscape - Kegiatan Sekolah OSIS/MPK SMAN 1 RENGAT">
+                <p>Nature – Vibing.</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://i.pinimg.com/1200x/1e/ae/67/1eae674712ab8d73f05256951f4fa098.jpg" alt="Potret Orang - Fokus pada Ekspresi">
+                <p>Portrait – Aestetchic.</p>
+            </div>
+        </div>
+        
+        <h3>🎨 Arts</h3>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://pbs.twimg.com/media/G-cQ0V0bwAA61RO?format=jpg&name=900x900" alt="Furry Art - Illustration">
+                <p>Furry Art – Illustration.</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://pbs.twimg.com/media/G-t0ldQbQAQJ8dT?format=jpg&name=small" alt="Ilustrasi Furry - Tema Medieval">
+                <p>Furry Art – Tema medieval.</p>
+            </div>
+        </div>
+        
+        <h3>💼 EXPERIENCE</h3>
+        <ul style="list-style: none; padding: 0;">
+            <li style="margin: 10px 0;"><strong>ORGANISASI SISWA SMP IT KAHAR RAHMAN MB. 2023/2024:</strong> ANGGOTA SEKBID – KEBAHASAAN</li>
+            <li style="margin: 10px 0;"><strong>MAJELIS PERWAKILAN KELAS MB. 2024/2025:</strong> ANGGOTA KOMISI IX – TEKNOLOGI INFORMASI KOMUNIKASI</li>
+            <li style="margin: 10px 0;"><strong>ORGANISASI SISWA SMAN 1 RENGAT MB. 2025/2026:</strong> KETUA SEKBID IX – TEKNOLOGI INFORMASI KOMUNIKASI</li>
+            <li style="margin: 10px 0;"><strong>FORUM EKSTRAKURIKULER SMAN 1 RENGAT MB. 2024/2025:</strong> SEKRETARIS – I</li>
+            <li style="margin: 10px 0;"><strong>FORUM ANAK KECAMATAN RENGAT MB. 2025/2027:</strong> SEKRETARIS – I</li>
+        </ul>
+        <p><a href="#" style="color: #dc143c; font-weight: bold;">Download Portfolio Lengkap</a></p>
+    </div>
+    
+    <!-- Konten Social -->
+    <div id="social" class="content">
+        <h2>Ikuti Saya di Sosmed</h2>
+        <p>Yuk, connect dan lihat update terbaru!</p>
+        <div class="social-links">
+            <a href="https://instagram.com/itzarkandz" target="_blank">📷 Instagram: @itzarkandz</a>
+            <a href="https://tiktok.com/@itzarkandz" target="_blank">🎥 TikTok: @itzarkandz</a>
+            <a href="https://x.com/theclouddz" target="_blank">🐦 X (Twitter): @theclouddz</a>
+            <a href="https://linktr.ee/itzarkandz" target="_blank">🍃 Linktree: @itzarkandz</a>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Arkan Dzakwan. Dibuat dengan HTML, CSS, JS dan Hati. | <a href="#" style="color: #dc143c;">Kontak Saya</a></p>
+    </footer>
+    
+    <script>
+        // JavaScript untuk tabs dengan animasi yang lebih smooth
+        function showTab(tabId) {
+            // Sembunyikan semua konten
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // Hapus active dari semua tab
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Tampilkan konten yang dipilih
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        // Tambahan: Efek klik pada gambar portfolio (modal sederhana)
+        document.querySelectorAll('.portfolio-item img').forEach(img => {
+            img.addEventListener('click', () => {
+                const modal = document.createElement('div');
+                modal.style.position = 'fixed';
+                modal.style.top = '0';
+                modal.style.left = '0';
+                modal.style.width = '100%';
+                modal.style.height = '100%';
+                modal.style.background = 'rgba(0,0,0,0.9)';
+                modal.style.display = 'flex';
+                modal.style.alignItems = 'center';
+                modal.style.justifyContent = 'center';
+                modal.style.zIndex = '1000';
+                modal.innerHTML = `<img src="${img.src}" style="max-width: 90%; max-height: 90%; border-radius: 10px; box-shadow: 0 0 30px #dc143c;">`;
+                modal.addEventListener('click', () => modal.remove());
+                document.body.appendChild(modal);
+            });
+        });
+    </script>
+</body>
+</html>
